@@ -51,7 +51,18 @@ public class LoginActivity extends BaseActivity {
 
 	private void doLogin(String email, String password) {
 		// Add the code of the tutorial below
+		weDeploy.auth("auth.inovant-weread.wedeploy.io")
+				.signIn(email, password).execute(new Callback() {
+			@Override
+			public void onSuccess(Response response) {
+				showAlert("Success", "Signed in");
+			}
 
+			@Override
+			public void onFailure(Exception e) {
+				showAlert("Error", "Login error");
+			}
+		});
 		// -------
 	}
 }

@@ -46,7 +46,20 @@ public class SignUpActivity extends BaseActivity {
 
 	private void doSignUp(String name, String email, String password) {
 		// Add the code of the tutorial below
+		weDeploy.auth("auth.inovant-weread.wedeploy.io")
+				.createUser(email, password, name)
+				.execute(new Callback() {
+					@Override
+					public void onSuccess(Response response) {
+						showAlert("Success", "Signed up successfully");
+					}
 
+					@Override
+					public void onFailure(Exception e) {
+						Log.e("Error", "Sign up error", e);
+						showAlert("Error", "Sign up error");
+					}
+				});
 		// -------
 	}
 }
